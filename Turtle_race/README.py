@@ -25,5 +25,5 @@ The Turtle Race program creates a fun, interactive racing game where turtles
 move towards the finish line at random speeds. The first turtle to reach the
 finish line wins the race!
 
-AUTHOR: Prince Raj
+AUTHOR: Python Projects
 """
