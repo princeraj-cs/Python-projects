@@ -32,6 +32,6 @@ while is_race_on:
             if winning_turtle == user_bet:
                 print(f"You won, the winner is {winning_turtle}")
             else:
-                print(f"You loose, the winner is {winning_turtle}")
+                print(f"You lose, the winner is {winning_turtle}")
 
 screen.exitonclick()
