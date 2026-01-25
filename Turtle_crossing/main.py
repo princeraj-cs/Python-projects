@@ -1,48 +1,38 @@
-from turtle import Screen
-from paddle import Paddle
-from ball import Ball
-from score import Scoreboard
 import time
+from turtle import Screen
+from player import Player
+from car_manager import CarManager
+from scoreboard import Scoreboard
 
 screen = Screen()
-screen.bgcolor("black")
-screen.setup(800, 600)
-screen.title("Pong")
+screen.setup(width=600, height=600)
 screen.tracer(0)
 
-r_paddle = Paddle((350, 0))
-l_paddle = Paddle((-350, 0))
-ball = Ball()
+player = Player()
+car_manager = CarManager()
 score = Scoreboard()
 
 screen.listen()
-screen.onkeypress(r_paddle.go_up, "Up")
-screen.onkeypress(r_paddle.go_down, "Down")
-screen.onkeypress(l_paddle.go_up, "w")
-screen.onkeypress(l_paddle.go_down, "s")
+screen.onkeypress(player.move_up, "Up")
 
 game_is_on = True
-
 while game_is_on:
     time.sleep(0.1)
     screen.update()
-    ball.move()
 
-    # Detect the collision with wall
-    if ball.ycor() > 280 or ball.ycor() < - 280:
-        ball.bounce_y()
+    car_manager.generate_car()
+    car_manager.move()
+    score.display()
 
-    # Detect collision with paddles
-    if (ball.distance(r_paddle) < 50 and ball.xcor() > 320) or (ball.distance(l_paddle) < 50 and ball.xcor() < -320):
-        ball.bounce_x()
+    # Detect collision with car
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
+            score.game_over()
+            game_is_on = False
 
-    if ball.xcor() > 380:
-        ball.reset()
-        score.l_point()
-
-    if ball.xcor() < -380:
-        ball.reset()
-        score.r_point()
-
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.level_up()
+        score.level_inc()
 
 screen.exitonclick()
