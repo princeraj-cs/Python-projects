@@ -26,6 +26,15 @@ class Snake:
         s.speed("fastest")
         self.segments.append(s)
 
+    def reset_seg(self):
+        for seg in self.segments:
+            seg.hideturtle()
+            seg.clear()
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+        self.head.setheading(RIGHT)
+
     def extend(self):
         self.add_segment(self.segments[-1].position())
 
