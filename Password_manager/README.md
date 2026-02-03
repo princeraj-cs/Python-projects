@@ -5,11 +5,11 @@ A secure and user-friendly password manager built with Python and Tkinter that h
 ## ✨ Features
 
 - 🎲 **Random Password Generator** - Creates strong, random passwords with letters, numbers, and symbols
-- 💾 **Secure Storage** - Saves your passwords locally in an organized format
+- 💾 **Secure Storage** - Saves your passwords locally in JSON format
 - 📋 **Auto-Copy to Clipboard** - Generated passwords are automatically copied for easy pasting
+- 🔍 **Search Functionality** - Quickly look up stored credentials by website name
 - ✅ **Input Validation** - Ensures no fields are left empty before saving
 - 🖼️ **Clean GUI** - Simple and intuitive graphical user interface
-- ⚠️ **Confirmation Dialogs** - Double-check before saving credentials
 
 ## 🚀 Getting Started
 
@@ -42,7 +42,7 @@ python main.py
 2. **Enter Email/Username** - Your email or username (default: xyz@gmail.com)
 3. **Generate Password** - Click "Generate Password" button to create a strong random password
 4. **Save Credentials** - Click "Add" button to save your credentials
-5. **Confirm** - Review the information in the confirmation dialog and click OK to save
+5. **Search Credentials** - Click "Search" button to find saved passwords for a website
 
 ## 🔑 Password Generation
 
@@ -54,10 +54,17 @@ The password generator creates strong passwords with:
 
 ## 📁 Data Storage
 
-Credentials are stored in `password.txt` in the following format:
+Credentials are stored in `password.json` in JSON format:
+```json
+{
+    "Website": {
+        "email": "user@example.com",
+        "password": "generated_password"
+    }
+}
 ```
-Website | Email | Password
-```
+
+This format allows for easy searching and organization of credentials.
 
 ## 🛡️ Security Note
 
